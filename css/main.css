@@ -1,13 +1,15 @@
     *{
 		padding: 0;margin: 0;
+		max-width:100vw;
 	}
 	html{font-size: 62.5%;
 	}
 	body{
+		max-width:99vw;
 		font-size:1.8rem;
        padding:0.3rem;
 		line-height:3rem;	
-		text-align:justify;
+		text-align:justify;	
 		
 	}
     .wrap{
