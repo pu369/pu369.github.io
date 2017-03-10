@@ -1,0 +1,37 @@
+    *{
+		padding: 0;margin: 0;
+	}
+	html{font-size: 62.5%;
+	}
+	body{
+		font-size:1.8rem;
+       padding:0.3rem;
+		line-height:3rem;	
+		text-align:justify;
+		
+	}
+    .wrap{
+	display:flex; 	
+    }
+	.row{
+	  display:flex;
+      width: 100%; 
+background-color:#fffff1;	  
+    }
+	  .cell{	
+	   flex:0 1 auto;	
+	   background-color:$fffffc;
+	   margin:0.1rem;
+	  }
+	.font-big{
+		font-size:3.5rem;
+	}
+	.justify-content-space-between{
+		justify-content:space-between;
+	}
+	/*pre强制换行*/
+pre{ border:#CCC solid 1px; padding:10px; background-color:#F9F9F9;
+font-family:"Courier New", Courier, Arial; font-size:1.6rem; line-height:1.75;
+white-space: pre-wrap!important;    /*保留空白，进行换行*/
+word-wrap: break-word!important;    /*连续字符换行*/
+/*white-space:normal!important;*/    /*忽略空白，进行换行*/}
