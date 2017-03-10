@@ -30,8 +30,11 @@ background-color:#fffff1;
 		justify-content:space-between;
 	}
 	/*pre强制换行*/
-pre{ border:#CCC solid 1px; padding:10px; background-color:#F9F9F9;
-font-family:"Courier New", Courier, Arial; font-size:1.6rem; line-height:1.75;
-white-space: pre-wrap!important;    /*保留空白，进行换行*/
-word-wrap: break-word!important;    /*连续字符换行*/
-/*white-space:normal!important;*/    /*忽略空白，进行换行*/}
+pre{ 
+width:90vw;
+border:#CCC solid 1px; padding:10px; background-color:#F9F9F9;
+/*font-family:"Courier New", Courier, Arial; font-size:1.6rem; line-height:1.75;*/
+white-space: pre-wrap!important;   /*保留空白，进行换行*/
+word-wrap: break-word!important;   /*连续字符换行*/
+/*white-space:normal!important;*/     /*忽略空白，进行换行*/
+}
