@@ -1,0 +1,36 @@
+<!doctype html>
+<html  lang="zh-CN">
+<head>
+    <meta charset="utf-8" />   
+    <meta name="description" content="pu369" />
+    <title>pu369博客</title>
+	<meta name="description" content="个人博客">
+   <meta name="keywords" content="pu369 博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="./css/main.css" rel="stylesheet">
+	<script src="./js/jquery.js"></script> 
+    <script src="./js/main.js"></script>
+
+	 </head>
+<body>
+ <script src="./js/nav.js"></script>
+ 
+	
+   <div class="row">
+	<div class="cell"> 
+	<h2>如何克隆DOM节点</h2>
+	<p>script：</p>
+<pre>window.onload = function () { 
+var sourceNode = document.getElementById("div-0"); // 获得被克隆的节点对象
+for (var i = 1; i < 10; i++) { 
+var clonedNode = sourceNode.cloneNode(true); // 克隆节点 
+clonedNode.setAttribute("id", "div-" + i); // 修改一下id 值，避免id 重复 
+sourceNode.parentNode.appendChild(clonedNode); // 在父节点插入克隆的节点 
+} 
+}</pre>	
+	</div>		
+	</div>	
+	
+
+</body>
+</html>

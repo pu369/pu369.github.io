@@ -3,55 +3,28 @@
 <head>
     <meta charset="utf-8" />   
     <meta name="description" content="pu369" />
-    <meta name="author" content="pu369" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>pu369博客</title>
+	<meta name="description" content="个人博客">
+   <meta name="keywords" content="pu369 博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="./css/main.css" rel="stylesheet">
 	<script src="./js/jquery.js"></script> 
     <script src="./js/main.js"></script>
-	 <title>pu369博客</title>
-</head>
-<body>
 
-<div  class="wrap">
-  <div class="row justify-content-space-between">
-	<div class="cell "> 
-	<a>首页</a>
-	</div>
-	<div  class="cell  font-big">
-   ≡
-	</div>	
-	</div>
-</div>
-<div id = "div-0" class="wrap">
-  <div class="row">
-	<div class="cell"> 
-	<h2>win7下搜索文件内容的办法</h2>
-	<p>
-	目录下有静态html文件，想根据关键词搜索，决定用批处理：
-	在该目录下建search.bat：</p>
-	<pre>
-for %%i in (*.html) do find "要搜索的关键词" %%i
-pause
-	</pre>
-	<p>更多批处理用法可参考</p><p> www.zybuluo.com/yangfch3/note/338252 </p>
-	</div>		
-	</div>
-</div>
-</br><!--------------------------------------------------->
-<div id = "div-2" class="wrap">
+	 </head>
+<body>
+ <script src="./js/nav.js"></script>
+
   <div class="row">
 	<div class="cell"> 
 	<h2>git clone 命令克隆远程仓库代码到本地（win7系统）</h2>
 	<p>	首先得会科学上网，安装git,配置代理，然后在github上找到远程仓库地址，在cmd中执行以下命令，将远程库代码clone到当前目录下：</p>
 	<pre>
-git clone 
-https://github.com/shadowsocks/shadowsocks-android.git</pre>	
+	git clone
+	https://github.com/shadowsocks/shadowsocks-android.git</pre>	
 	</div>		
 	</div>
-</div>
-</br><!--------------------------------------------------->
-<div id = "div-2" class="wrap">
-
+<!--------------------------------------------------->
 	  <div class="row">
 	<div class="cell"> 
 	<h2>git commit和git push 命令提交修改后的代码到远程仓库（win7系统）</h2>
@@ -64,26 +37,7 @@ git push
 	<p>根据提示，输入你的github用户名和密码，完成更新代码。</p>
 	</div>		
 	</div>
-</div>
+
 </br><!--------------------------------------------------->
-<div id = "div-5" class="wrap">
-  <div class="row">
-	<div class="cell"> 
-	<h2>如何克隆DOM节点</h2>
-	<p>	
-	script：</p>
-	<pre>
-window.onload = function () { 
-var sourceNode = document.getElementById("div-0"); // 获得被克隆的节点对象 
-for (var i = 1; i < 10; i++) { 
-var clonedNode = sourceNode.cloneNode(true); // 克隆节点 
-clonedNode.setAttribute("id", "div-" + i); // 修改一下id 值，避免id 重复 
-sourceNode.parentNode.appendChild(clonedNode); // 在父节点插入克隆的节点 
-} 
-}
-	</pre>	
-	</div>		
-	</div>
-</div>
 </body>
 </html>

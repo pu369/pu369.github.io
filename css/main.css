@@ -1,42 +1,80 @@
-    *{
-		padding: 0;margin: 0;
-		max-width:100vw;
+	html{font-size: 100px;
+	 margin:0 0 auto;	
 	}
-	html{font-size: 62.5%;
+	body{      		
+		margin:0 2 0 0;		
+		width:95%;
+		max-height: 100%;	
+		font-size: 16px;
+		font-weight:bold;  
+		line-height:1.5;	
 	}
-	body{
-		max-width:99vw;
-		font-size:1.8rem;
-       padding:0.3rem;
-		line-height:3rem;	
-		text-align:justify;	
+	
+	a{
+		font-size: 16px;
+	    color: #0000ff; 
+	text-decoration:none;	
+	}
+	h2{
 		
+	
 	}
-    .wrap{
-	display:flex; 	
-    }
-	.row{
-	  display:flex;
-      width: 100%; 
-background-color:#fffff1;	  
-    }
-	  .cell{	
-	   flex:0 1 auto;	
-	   background-color:$fffffc;
-	   margin:0.1rem;
-	  }
-	.font-big{
-		font-size:3.5rem;
+	p{		
+	white-space: pre-wrap!important;   
+	word-wrap: break-word!important;		
+	width:100%;
+	max-height: 100%;
+	
+			
 	}
-	.justify-content-space-between{
-		justify-content:space-between;
-	}
-	/*pre强制换行*/
-pre{ 
-width:90vw;
-border:#CCC solid 1px; padding:10px; background-color:#F9F9F9;
+	pre{ /*pre强制换行*/
+width:98%;
+border:#CCC solid 1px; padding:0px; background-color:#F9F9F9;
 /*font-family:"Courier New", Courier, Arial; font-size:1.6rem; line-height:1.75;*/
 white-space: pre-wrap!important;   /*保留空白，进行换行*/
 word-wrap: break-word!important;   /*连续字符换行*/
 /*white-space:normal!important;*/     /*忽略空白，进行换行*/
 }
+	 .cell{	
+	   margin:1px;	
+width: 100%; 	  
+	
+ padding:1px;
+	  }
+	.head{
+	display:flex;	
+	justify-content:space-between;
+	align-items:center;
+  background-color:#ffffee;	
+  color:grey;   
+	}
+	.head-c{
+	display:flex;
+	justify-content:center;
+	 padding:5px;
+	 
+	 border: 1px solid #CCC;
+	}
+	.head-c-p{	
+	display:none;
+	border: 1px solid #CCC;
+	}
+	.head-i{
+display:flex;
+justify-content:center;
+border: 1px solid #CCC;
+ padding:5px;
+ 
+
+	}
+	
+	.row{
+	display:flex;	
+	flex:0 1 auto;	
+   width: 100%; 
+   min-width:100%   
+   align-items:center;	
+   
+    }  
+
+
