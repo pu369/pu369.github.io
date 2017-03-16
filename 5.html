@@ -15,21 +15,34 @@
 <body>
  <script src="./js/nav.js"></script>
  
-	
-   <div class="row">
+  <div class="row">
 	<div class="cell"> 
-	<h2>如何克隆DOM节点</h2>
-	<p>script：</p>
-<pre>window.onload = function () { 
-var sourceNode = document.getElementById("div-0"); // 获得被克隆的节点对象
-for (var i = 1; i < 10; i++) { 
-var clonedNode = sourceNode.cloneNode(true); // 克隆节点 
-clonedNode.setAttribute("id", "div-" + i); // 修改一下id 值，避免id 重复 
-sourceNode.parentNode.appendChild(clonedNode); // 在父节点插入克隆的节点 
-} 
-}</pre>	
+	<h2>建立本地项目结构</h2>
+<p>&nbsp; &nbsp;1、在c:\wamp\www 目录中建立css、img、js三个目录。
+<br/>&nbsp; &nbsp;2、在www目录中建立index.html文件
+<br/>&nbsp; &nbsp;3、在css目录中建立main.css和nav.js
+<br/>&nbsp; &nbsp;4、在js目录中建立main.js和nav.js
+<br/>&nbsp; &nbsp;5、建议用Notepad++检查一下文件 编码为：utf8无BOM，
+<br/>&nbsp; &nbsp;6、从网上下载jquery.js并保存在js目录中。
+<br/>&nbsp; &nbsp;最终的目录结构如下：	
+</p>
+	<pre>
+www
+--|css
+----main.css
+--|img
+--|js
+----jquery.js
+----main.js
+----nav.js
+--index.html
+	</pre>
+
+
 	</div>		
 	</div>	
+	
+
 	
 
 </body>

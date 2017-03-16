@@ -14,45 +14,26 @@
 	 </head>
 <body>
  <script src="./js/nav.js"></script>
-
-	
+ 
   <div class="row">
 	<div class="cell"> 
-	<h2>如何给pre标签中的代码加上行号(此代码只允许页面上有一个pre)</h2>
-	<p>script：</p>
-<pre>var arr = $("pre").html().split("\n");
-var text = "&lt;ol&gt;";
-$.each(arr,function(i,item){
-    if(item.trim()!=""){
-        text += "&lt;li&gt;"+ item +"&lt;/li&gt;";
-    }
-	else
-	{
-    text += "&lt;/ol&gt;";
-	}
-$("pre").html(text);
-});
-</pre>	
+	<h2>准备开发环境</h2>
+<p>&nbsp; &nbsp; 我的开发环境：
+&nbsp; &nbsp; 1、操作系统：win7;
+&nbsp; &nbsp; 2、网站运行环境：wamp;
+&nbsp; &nbsp; 3、代码编辑工具：Notepad++;
+<br/>&nbsp; &nbsp; 当然你也可以用其他操作系统和PHP集成开发环境，并在VMware等虚拟机中运行。代码编辑工具可用Sublime Text3
+<br/>&nbsp; &nbsp; 下面说一下wamp的安装和使用：
+&nbsp; &nbsp; 1、从官网http://www.wampserver.com/，或其他地方下载安装包进行安装。若不会安装请搜索wamp安装教程。我安装在了C盘根目录下，即c:\wamp。
+&nbsp; &nbsp; 2、从系统托盘wamp菜单里找到localhost并点击，或直接在浏览器地址栏输入：http://localhost 。
+&nbsp; &nbsp; 3、看到wamp默认的网页内容后，可以进入下一页了。
+	</p>	
+
 	</div>		
-	</div>
+	</div>	
 	
-<script>
 
-var arr = $("pre").html().split("\n");
-var text = "<ol>";
-$.each(arr,function(i,item){
-    if(item.trim()!=""){
-        text += "<li>"+ item +"</li>";
-    }
-	else
-	{
-    text += "</ol>";
-	}
 	
-    $("pre").html(text);
-});
-
-</script>
 
 </body>
 </html>

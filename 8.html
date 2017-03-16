@@ -1,0 +1,68 @@
+<!doctype html>
+<html  lang="zh-CN">
+<head>
+    <meta charset="utf-8" />   
+    <meta name="description" content="pu369" />
+    <title>pu369博客</title>
+	<meta name="description" content="个人博客">
+   <meta name="keywords" content="pu369 博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="./css/main.css" rel="stylesheet">
+	<script src="./js/jquery.js"></script> 
+    <script src="./js/main.js"></script>
+
+	 </head>
+<body>
+ <script src="./js/nav.js"></script>
+ 
+  <div class="row">
+	<div class="cell"> 
+	<h2>编写nav.js</h2>
+<p>
+&nbsp; &nbsp;在index.html中有一行 &lt;script src=&quot;./js/nav.js&quot;&gt;&lt;/script&gt;
+<br/>&nbsp; &nbsp;引入nav.js,主要是为了动态生成导航条内容。
+<br/>&nbsp; &nbsp;nav.js代码如下：</p>
+<pre>
+!function nav(){
+	var url=window.location.pathname;
+	var i1=url.lastIndexOf(&#x27;/&#x27;);
+	var i2=url.lastIndexOf(&#x27;.&#x27;);
+	var n=url.slice(i1,i2).replace(&#x27;/&#x27;,&#x27;&#x27;);
+	var pre=null;
+	var next=null;
+	var cur=parseInt(n);
+   if(cur&gt;1){
+	pre=cur-1;
+	pre = &#x27;&#x27;+pre + &#x27;.html&#x27;;
+	next=cur+1;	
+	next =&#x27;&#x27;+ next +&#x27;.html&#x27;;
+	}
+	else if(cur==1){
+	pre=&#x27;index&#x27;;
+	next=cur+1;	
+	next =&#x27;&#x27; +next +&#x27;.html&#x27;;
+	}	
+	else
+	{
+	pre=&#x27;#&#x27;;
+	next=1;
+	next =&#x27;&#x27;+next + &#x27;.html&#x27;;
+	}
+	var nav=&quot;&lt;div class=&#x27;head&#x27;&gt;	&lt;div  class=&#x27;head-i&#x27;&gt;&lt;a href=&#x27;index.html&#x27;&gt;首 页&lt;/a&gt;&amp;nbsp;|&amp;nbsp;&lt;a href=&#x27;&quot;+ pre +&quot;&#x27;&gt;上 页&lt;/a&gt;&amp;nbsp;|&amp;nbsp;&lt;a href=&#x27;&quot;+ next +&quot;&#x27;&gt;下 页&lt;/a&gt;&lt;/div&gt;&lt;div id=&#x27;head-c&#x27; class=&#x27;head-c&#x27;&gt;&lt;a href=&#x27;#&#x27;&gt;≡&lt;/a&gt;&lt;/div&gt;	&lt;/div&gt;&lt;div id=&#x27;head-c-p&#x27; class=&#x27;head-c-p&#x27;&gt;&lt;/div&gt;&quot;;	
+	document.write(nav);
+	}();
+$(function(){
+  $(&quot;#head-c&quot;).click(function(){
+  $(&quot;#head-c-p&quot;).slideToggle();
+  });
+});
+</pre>
+
+	</div>		
+	</div>	
+	
+
+	
+
+</body>
+</html>

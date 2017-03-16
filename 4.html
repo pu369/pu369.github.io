@@ -14,242 +14,47 @@
 	 </head>
 <body>
  <script src="./js/nav.js"></script>
-
-	
+ 
   <div class="row">
 	<div class="cell"> 
-	<h2>一些常用的php代码</h2>
-	<p><pre>
-&lt;?php
-//是否显示错误及提示
-//error_reporting(0);
-//php 怎么判断一个接受到的参数是否为空
-if(empty($_GET[&#x27;f&#x27;]) || !isset($_GET[&#x27;f&#x27;]) || $_GET[&#x27;f&#x27;]==&#x27;&#x27; || $_GET[&#x27;f&#x27;]==null){
-$f=null;
-echo &quot;null&quot;;
-}
-if(isset($_GET[&#x27;f&#x27;])){
-	$f=$_GET[&quot;f&quot;];
-}
-if($f==&quot;info&quot;)
-{
-phpinfo(); // 调用函数
-}
-if($f==&quot;conf&quot;)
-{
-conf(); 
-}
-if($f==&quot;writef&quot;)
-{
-writef(); 
-}
-if($f==&quot;dbc&quot;)
-{
-dbc(); 
-}
-if($f==&quot;dbr&quot;)
-{
-dbr(); 
-}
-if($f==&quot;dbsql&quot;)
-{
-dbsql(); 
-}
-if($f==&quot;dbins&quot;)
-{
-dbins(); 
-}
-if($f==&quot;dbu&quot;)
-{
-dbu(); 
-}
-if($f==&quot;dbdel&quot;)
-{
-dbdel(); 
-}
-if($f==&quot;sess&quot;)
-{
-sess(); 
-}
-if($f==&quot;cooki&quot;)
-{
-cooki(); 
-}
-if($f==&quot;fileup&quot;)
-{
-fileup(); 
-}
-//函数///////////////////////////////////////////////////////////////////////////////////
-function info() {
-  phpinfo();
-}
-//读取配置文件
-function conf() {	
-  $config = include(&#x27;config.php&#x27;);
-var_dump($config);
-}
-//写文件 
-function writef() {	
-$myconf = fopen(&quot;config.php&quot;, &quot;w&quot;) or die(&quot;Unable to open file!&quot;);
-$ar=array(
-    &#x27;a&#x27; =&gt; 1,
-    &#x27;b&#x27; =&gt; 2
-);
-$arr=var_export($ar,true);//不加true会在页面显示
-fwrite($myconf, $arr);
-fclose($myconf);
-echo &quot;write config.php&quot;;
-}
-//创建数据库
-function dbc() {
-//$pdo = new PDO(&quot;mysql:host=localhost;dbname=mysql&quot;,&quot;admin&quot;,&quot;123456&quot;); //远程用root不行？
-  $dbh = new PDO(&quot;mysql:host=localhost&quot;, &quot;root&quot;, &quot;&quot;);
-  $dbh-&gt;exec(&quot;CREATE DATABASE IF NOT EXISTS &#x60;cjltest&#x60; DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
-                CREATE USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;&#x27;;
-                GRANT ALL ON &#x60;cjltest&#x60;.* TO &#x27;root&#x27;@&#x27;localhost&#x27;;
-                FLUSH PRIVILEGES;&quot;) 
-        or die(print_r($dbh-&gt;errorInfo(), true));
- 
-	$dbh=null;	
-}
-//读数据库,返回数组
-function dbr() { 
-$pdo = new PDO(&quot;mysql:host=localhost;dbname=mysql&quot;,&quot;admin&quot;,&quot;123456&quot;); 
-$stmt = $pdo-&gt;query(&#x27;SELECT * FROM user&#x27;);
-$arr1=$stmt-&gt;fetch();
-var_dump($arr1);
-$arr=$stmt-&gt;fetchAll();
-var_dump($arr);
-$stmt = null; // doing this is mandatory for connection to get closed
-$pdo = null;
-}
-//从sql文件生成数据库表
-//为方便，db.sql中不允许有注释，并去掉最后一个分号
-function dbsql() { 
-$pdo = new PDO(&quot;mysql:host=localhost;dbname=cjltest&quot;,&quot;admin&quot;,&quot;123456&quot;); 
-$pdo-&gt;query(&quot;set names utf8&quot;);//否则为乱码
-$sqlStr=file_get_contents(&#x27;db.sql&#x27;);
-  //通过sql语法的语句分割符进行分割
-        $arr = explode(&quot;;&quot;,trim($sqlStr));	
-		//执行sql语句
-		var_dump($arr);
-foreach ($arr as $value) {
-    $pdo-&gt;exec($value);
-}
-$pdo = null;
-}
-
-//向数据库表插入数据
-function dbins() { 
-$pdo = new PDO(&quot;mysql:host=localhost;dbname=cjltest&quot;,&quot;admin&quot;,&quot;123456&quot;); 
-//准备SQL语句
-$sql = &quot;INSERT INTO c (name,sequence) value (:name,:sequence)&quot;;//省掉了自动编号字段
-$stmt = $pdo-&gt;prepare($sql);
-//准备数据
-$arr=array(
-
-&#x27;:name&#x27;=&gt;2,
-&#x27;:sequence&#x27;=&gt;3);
-$stmt-&gt;execute($arr);
-var_dump($pdo-&gt;lastInsertId());
-$stmt = null; // doing this is mandatory for connection to get closed
-$pdo = null;
-}
-
-//更新数据库表的数据
-function dbu() { 
-$pdo = new PDO(&quot;mysql:host=localhost;dbname=cjltest&quot;,&quot;admin&quot;,&quot;123456&quot;); 
-//准备SQL语句
-$sql = &quot;UPDATE c SET name=:name,sequence=:sequence WHERE cid=1&quot;;//省掉了自动编号字段
-$stmt = $pdo-&gt;prepare($sql);
-//准备数据
-$arr=array(
-&#x27;:name&#x27;=&gt;11,
-&#x27;:sequence&#x27;=&gt;22);
-$stmt-&gt;execute($arr);
-$stmt = null; // doing this is mandatory for connection to get closed
-$pdo = null;
-}
-//删除数据库表的数据
-function dbdel() { 
-$pdo = new PDO(&quot;mysql:host=localhost;dbname=cjltest&quot;,&quot;admin&quot;,&quot;123456&quot;); 
-//准备SQL语句
-$sql = &quot;DELETE FROM c WHERE cid&gt;:cid&quot;;//省掉了自动编号字段
-$stmt = $pdo-&gt;prepare($sql);
-//准备数据
-$arr=array(
-&#x27;:cid&#x27;=&gt;30);
-$stmt-&gt;execute($arr);
-var_dump($pdo-&gt;lastInsertId());
-$stmt = null; // doing this is mandatory for connection to get closed
-$pdo = null;
-}
-//session
-function sess() {
-  session_start();
-if (!isset($_SESSION[&#x27;count&#x27;])) {
-  $_SESSION[&#x27;count&#x27;] = 0;
-} else {
-  $_SESSION[&#x27;count&#x27;]++;
-}
-var_dump($_SESSION[&#x27;count&#x27;]);
-}
-function cooki() {
-  // set the cookies
-setcookie(&quot;mycookie[three]&quot;,urlencode(&quot;cookiethree三&quot;));
-setcookie(&quot;mycookie[two]&quot;, urlencode(&quot;cookietwo二&quot;));
-setcookie(&quot;mycookie[one]&quot;, urlencode(&quot;cookieone一&quot;));
-
-// after the page reloads, print them out
-if (isset($_COOKIE[&#x27;mycookie&#x27;])) {
-    foreach ($_COOKIE[&#x27;mycookie&#x27;] as $name =&gt; $value) {
-        $name = htmlspecialchars($name);
-        $value = htmlspecialchars(urldecode($value));
-        echo &quot;$name : $value &lt;br /&gt;\n&quot;;
-    }
-}
-}
-//文件上传，此处不含上传界面
-function fileup() {
-	
-  if ((($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/gif&quot;)
-|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/jpeg&quot;)
-|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/pjpeg&quot;))
-&amp;&amp; ($_FILES[&quot;file&quot;][&quot;size&quot;] &lt; 20000000))
-  {
-  if ($_FILES[&quot;file&quot;][&quot;error&quot;] &gt; 0)
-    {
-    echo &quot;Return Code: &quot; . $_FILES[&quot;file&quot;][&quot;error&quot;] . &quot;&lt;br /&gt;&quot;;
-    }
-  else
-    {
-    echo &quot;Upload: &quot; . $_FILES[&quot;file&quot;][&quot;name&quot;] . &quot;&lt;br /&gt;&quot;;
-    echo &quot;Type: &quot; . $_FILES[&quot;file&quot;][&quot;type&quot;] . &quot;&lt;br /&gt;&quot;;
-    echo &quot;Size: &quot; . ($_FILES[&quot;file&quot;][&quot;size&quot;] / 1024) . &quot; Kb&lt;br /&gt;&quot;;
-    echo &quot;Temp file: &quot; . $_FILES[&quot;file&quot;][&quot;tmp_name&quot;] . &quot;&lt;br /&gt;&quot;;
-
-    if (file_exists(&quot;upload/&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;]))
-      {
-      echo $_FILES[&quot;file&quot;][&quot;name&quot;] . &quot; already exists. &quot;;
-      }
-    else
-      {
-      move_uploaded_file($_FILES[&quot;file&quot;][&quot;tmp_name&quot;],
-      &quot;upload/&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;]);
-      echo &quot;Stored in: &quot; . &quot;upload/&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;];
-      }
-    }
-  }
-else
-  {
-  echo &quot;Invalid file&quot;;
-  }
-}
-	
+	<h2>利用github免费空间</h2>
+<p>&nbsp; &nbsp;若只需本地代码调试，可跳过本页面内容。
+<br/>&nbsp; &nbsp;利用github可以免费建立静态网站。
+<br/>&nbsp; &nbsp;天朝访问github需科学上网（shadowsocks 、VPN 等）以及安装git并在cmd中执行:
+</p>
+<pre >
+set https_proxy=127.0.0.1:1080
+set http_proxy=127.0.0.1:1080
+set GIT_SSL_NO_VERIFY=true 
+</pre>
+<p >
+&nbsp; &nbsp;1、在github注册用户名、密码。
+<br/>&nbsp; &nbsp;2、比如我的用户名是pu369,就在github上建立名为pu369.github.io的repositorie
+<br/>&nbsp; &nbsp;3、打开cmd命令窗口，输入
+</p>
+<pre>cd c:\</pre> 
+<p>
+&nbsp; &nbsp;4、再输入以下命令，将github上库clone到本地，即：生成C:\pu369.github.io目录。
+</p>
+<pre>git clone  https://github.com/pu369/pu369.github.io.git </pre>
+<p>
+&nbsp; &nbsp;5、将C:\pu369.github.io目录中除.git目录外，其他的全删除，并新建index.html文件 ，内容为hello world
+<br/>&nbsp; &nbsp;6、如果你有顶级域名，如www.your.com,可以在C:\pu369.github.io目录中再新建一个名为CNAME的文件 （无扩展名），内容为your.com ,则会将域名绑定到你的github网站。
+<br/>&nbsp; &nbsp;7、将C:\pu369.github.io目录名改名为www，并替换c:\wamp\www目录。
+<br/>&nbsp; &nbsp;8、好了，以后每次在c:\wamp\www目录中新建或修改文件后，都从cmd命令窗口转到c:\wamp\www目录，然后执行以下代码来更新github上的内容：
+</p>
+	<pre>
+git add -A
+git commit -a -m "hello"	
+git push
 	</pre>
-	</p>	
+		
+
 	</div>		
 	</div>	
+	
+
+	
 
 </body>
 </html>
