@@ -1,0 +1,117 @@
+<!doctype html>
+<html  lang="zh-CN">
+<head>
+    <meta charset="utf-8" />   
+    <meta name="description" content="pu369" />
+    <title>pu369博客</title>
+	<meta name="description" content="个人博客">
+   <meta name="keywords" content="pu369 博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="./css/main.css" rel="stylesheet">
+	<script src="./js/jquery.js"></script> 
+    <script src="./js/main.js"></script>
+	 </head>
+<body>
+ <script src="./js/nav.js"></script>
+  <div class="row">
+	<div class="cell"> 
+	<h2>html5调用摄像头实现拍照</h2>	
+	 <p>
+使用input：file标签,去调用系统默认相机，摄像，录音功能，其实是有个capture属性，直接说明需要调用什么功能</p>
+<pre>
+&lt;input type="file" accept="image/*" capture="camera"&gt;
+&lt;input type="file" accept="video/*" capture="camcorder"&gt;
+&lt;input type="file" accept="audio/*" capture="microphone"&gt;</pre>
+<p>capture表示，可以捕获到系统默认的设备，比如：camera--照相机；camcorder--摄像机；microphone--录音。
+accept表示，直接打开系统文件目录。
+input:file标签还支持一个multiple属性，表示可以支持多选，如：</p>
+<pre>
+&lt;input type="file" accept="image/*" multiple&gt;</pre>
+<p>加上这个multiple后，capture就没啥用了，因为multiple是专门用来支持多选的。
+	 </p>
+	 <p>&nbsp;&nbsp;具体例子：
+	 <br/>&nbsp;&nbsp;第一步：<input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" class="sign_file"/>	 
+	 </p>
+	 <canvas ></canvas>	
+	 <br/>&nbsp;&nbsp;下面是上图的base64编码	 
+	<textarea id="j_thumb" ></textarea>	
+	<br/>&nbsp;&nbsp;第二步：先建立后台php文件:uploadimg.php
+	<pre>
+//注意：没有进行安全过滤
+$base64=$_POST["img"];	
+$img = base64_decode($base64);
+$a = file_put_contents('./test.jpg', $img);//返回的是字节数
+print_r($a);
+	</pre>
+	<br/>&nbsp;&nbsp;第三步：用jQuery ajax - post() 方法，将第一步选择的图片，通过第二步建立的后台文件上传。
+	<br/>&nbsp;&nbsp;点击<a id="upimg">上传图片</a>，将显示上传的字节数： <span id="span1">0</span>字节。（注意：我这里删除了第二步的uploadimg.php文件，所以不能上传）。
+	<br/>&nbsp;&nbsp;上传图片的jQuery代码：
+	<pre>
+$(document).ready(function(){
+  $("#upimg").click(function(){
+    txt=$("#j_thumb").val();	
+$.post("uploadimg.php",{img:txt},function(result){
+$("#span1").html(result);
+  });
+  });
+});
+	</pre>
+	</div>		
+	</div>
+	<script>
+	function drawOnCanvas(file) {
+var reader = new FileReader();
+
+reader.onload = function (e) {
+var dataURL = e.target.result,
+canvas = document.querySelector('canvas'),
+ctx = canvas.getContext('2d'),
+img = new Image();
+img.onload = function() {
+var square = 320;
+canvas.width = square;
+canvas.height = square;
+var context = canvas.getContext('2d');
+context.clearRect(0, 0, square, square);
+var imageWidth;
+var imageHeight;
+var offsetX = 0;
+var offsetY = 0;
+if (this.width > this.height) {
+imageWidth = Math.round(square * this.width / this.height);
+imageHeight = square;
+offsetX = - Math.round((imageWidth - square) / 2);
+} else {
+imageHeight = Math.round(square * this.height / this.width);
+imageWidth = square; 
+offsetY = - Math.round((imageHeight - square) / 2); 
+}	
+context.drawImage(this, offsetX, offsetY, imageWidth, imageHeight);
+var base64 = canvas.toDataURL('image/jpeg',0.5);
+$('#j_thumb').val(base64.substr(22));
+};
+img.src = dataURL;
+};
+
+reader.readAsDataURL(file);
+}
+	</script>	
+	<script>
+document.querySelector('input[type=file]').onchange = function () {
+var file = document.querySelector('input[type=file]').files[0];
+drawOnCanvas(file);
+};
+	</script>
+<script>
+$(document).ready(function(){
+  $("#upimg").click(function(){
+    txt=$("#j_thumb").val();	
+$.post("uploadimg.php",{img:txt},function(result){
+$("#span1").html(result);
+  });
+  });
+});
+</script>
+
+</body>
+</html>

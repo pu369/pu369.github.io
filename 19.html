@@ -1,0 +1,42 @@
+<!doctype html>
+<html  lang="zh-CN">
+<head>
+    <meta charset="utf-8" />   
+    <meta name="description" content="pu369" />
+    <title>pu369博客</title>
+	<meta name="description" content="个人博客">
+   <meta name="keywords" content="pu369 博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="./css/main.css" rel="stylesheet">
+	<script src="./js/jquery.js"></script> 
+    <script src="./js/main.js"></script>
+	 </head>
+<body>
+ <script src="./js/nav.js"></script>
+
+  <div class="row">
+	<div class="cell"> 
+	<h2>jQuery对html进行Encode和Decode</h2>
+	<p>相关代码请直接看本页源码的最后部分</p>
+	<textarea id='txt1' placeholder='要编码或解码的内容'></textarea>
+<br/><button id='btn1'>编码</button>&nbsp;<button id='btn2'>解码</button>
+<br/><textarea  id='txt2' placeholder='编码或解码后内容'></textarea>
+	</div>		
+	</div>
+
+</body>
+</html>
+<script>
+$(document).ready(function(){
+  $("#btn1").click(function(){
+  var s1=$("#txt1").val();
+  s1=$('<div/>').text(s1).html();//虚拟一个div
+  $("#txt2").text(s1);
+  });
+  $("#btn2").click(function(){
+  var s1=$("#txt1").val();
+  s1=$('<div/>').html(s1).text();//虚拟一个div
+  $("#txt2").text(s1);
+  });
+});
+</script>
