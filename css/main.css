@@ -5,8 +5,7 @@
 	body{      		
 		margin:0 2 0 0;		
 		width:95%;
-		max-height: 100%;	
-		font-size: 16px;
+		max-height: 100%;		
 		font-weight:bold;  
 		line-height:1.5;	
 	}
@@ -24,14 +23,12 @@
 	white-space: pre-wrap!important;   
 	word-wrap: break-word!important;		
 	width:100%;
-	max-height: 100%;	
-	font-size:16px;		
+	max-height: 100%;		
 	}
 	pre{ /*pre强制换行*/
 width:98%;
 border:#CCC solid 1px; padding:0px; background-color:#F9F9F9;
 /*font-family:"Courier New", Courier, Arial; font-size:1.6rem; line-height:1.75;*/
-font-size:16px;
 white-space: pre-wrap!important;   /*保留空白，进行换行*/
 word-wrap: break-word!important;   /*连续字符换行*/
 /*white-space:normal!important;*/     /*忽略空白，进行换行*/

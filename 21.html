@@ -88,7 +88,8 @@ offsetY = - Math.round((imageHeight - square) / 2);
 }	
 context.drawImage(this, offsetX, offsetY, imageWidth, imageHeight);
 var base64 = canvas.toDataURL('image/jpeg',0.5);
-$('#j_thumb').val(base64.substr(22));
+//$('#j_thumb').val(base64.substr(22));
+$('#j_thumb').val(base64);
 };
 img.src = dataURL;
 };
